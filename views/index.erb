@@ -5,5 +5,12 @@ Please enter your information.
 <input type = "text" name = "last_name" placeholder = "Last name">
 <input type = "text" name = "street" placeholder = "Street name">
 <input type = "text" name = "city_state_zip" placeholder = "City/State/Zip">
+<input type = "text" name = "user_email" placeholder = "Email">
 <input type = "submit">
 </form>
+<%info.each do |value|%>
+<br><%=value['first_name']%>
+<%=value['last_name']%> <br>
+<%end%>
+
+
