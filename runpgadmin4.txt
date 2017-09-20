@@ -1,0 +1,2 @@
+Run pgadmin4 through terminal on localhost:5050  - 
+python lib/python2.7/site-packages/pgadmin4/pgAdmin4.py
