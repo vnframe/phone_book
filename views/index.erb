@@ -8,18 +8,38 @@ Please enter your information.
 <input type = "text" name = "user_email" placeholder = "Email">
 <input type = "submit">
 </form>
-<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+<form action='/update' method='post'>
 
+   	<select name='table_column'>
+		<option value='col_first_name'>First Name</option>
+		<option value='col_last_name'>Last Name</option>
+		<option value='col_address'>Street Address</option>
+		<option value='col_city_state_zip'>City</option>
+		<option value='col_phone_num'>Phone Number</option>
+		<option value='col_email'>Email Adress</option>
+	</select>
+	<br>
+
+	   <input type="text" name="new_data" placeholder="new_data"><br>
+	   <input type="text" name="old_data" placeholder="old_data"><br>
+	   <input type="submit" value="Update">
+</form>
+<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
 <table id="myTable">
   <tr class="header">
-    <th style="width:60%;">Name</th>
-    <th style="width:40%;">Country</th>
+    <th style="width:40%;">Name</th>
+    <th style="width:40%;">Last Name</th>
+    <th style="width:40%;">Street Address</th>
+    <th style="width:40%;">City/State/Zip</th>
+    <th style="width:40%;">Phone Number</th>
   </tr>
 <%info.each do |value|%>
 <tr>
 <br><td><%=value['first_name']%> </td>
 <td><%=value['last_name']%> </td> <br>
 <td><%=value['street_address']%> </td> <br>
+<td><%=value['city_state_zip']%> </td> <br>
+<td><%=value['phone_number']%> </td> <br>
 </tr>
 <%end%>
 </table>
