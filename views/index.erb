@@ -1,3 +1,15 @@
+<doctype HTML5>
+<html lang="en-US">
+<head>
+    <meta charset="utf -8">
+    <title>Phonebook Query</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id = "banner">
+<center>Company Phonebook</center>
+</div>
+<div id = "info_boxes">
 Please enter your information.
 <form method = "post" action = "index">
 <input type = "text" name = "phone_number" placeholder = "Phone number">
@@ -18,13 +30,12 @@ Please enter your information.
 		<option value='col_phone_num'>Phone Number</option>
 		<option value='col_email'>Email Adress</option>
 	</select>
-	<br>
 
-	   <input type="text" name="new_data" placeholder="new_data"><br>
+	   <input type="text" name="new_data" placeholder="new_data">
 	   <input type="text" name="old_data" placeholder="old_data"><br>
 	   <input type="submit" value="Update">
 </form>
-<form action='/delete' method='post'> Delete your information:
+<form action='/delete' method='post'> Delete your information by:
 
    	<select name='table_column'>
 		<option value='col_first_name'>First Name</option>
@@ -39,7 +50,9 @@ Please enter your information.
 
 	   <input type="submit" value="Delete">
 </form>
+</div>
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
+<div id = "table">
 <table id="myTable">
   <tr class="header">
     <th style="width:40%;">Name</th>
@@ -58,6 +71,8 @@ Please enter your information.
 </tr>
 <%end%>
 </table>
+</div>
+<body>
 <script>
 function searchFunction() {
   // Declare variables

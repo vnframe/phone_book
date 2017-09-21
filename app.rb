@@ -59,10 +59,10 @@ post '/update' do
         db.exec("DELETE FROM phone_book_data WHERE street_address = '#{deleted}'");
     when 'col_city_state_zip'
         db.exec("DELETE FROM phone_book_data WHERE city_state_zip = '#{deleted}'");
-    when 'col_cell'
+    when 'col_phone_num'
         db.exec("DELETE FROM phone_book_data WHERE phone_number = '#{deleted}'");
-    when 'col_home'
-     db.exec("DELETE FROM phone_book_data");
+    when 'col_email'
+     db.exec("DELETE FROM phone_book_data WHERE email = '#{deleted}'");
      end
      redirect '/'
     end
