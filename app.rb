@@ -23,6 +23,7 @@ post "/index" do
     place = params[:city_state_zip]
     email = params[:user_email]
     db.exec("INSERT INTO phone_book_data(first_name, last_name, street_address, city_state_zip, phone_number, email) VALUES('#{fname}', '#{lname}', '#{street_address}', '#{place}', '#{phone_num}', '#{email}')");
+    redirect '/'
 end
 post '/update' do
     
@@ -46,3 +47,23 @@ post '/update' do
         end
        redirect '/'
     end
+    post "/delete" do
+        deleted = params[:data_to_delete]
+        column = params[:table_column]
+        case column
+    when 'col_first_name'
+        db.exec("DELETE FROM phone_book_data WHERE first_name = '#{deleted}'")
+    when 'col_last_name'
+        db.exec("DELETE FROM phone_book_data WHERE last_name = '#{deleted}'");
+    when 'col_address'
+        db.exec("DELETE FROM phone_book_data WHERE street_address = '#{deleted}'");
+    when 'col_city_state_zip'
+        db.exec("DELETE FROM phone_book_data WHERE city_state_zip = '#{deleted}'");
+    when 'col_cell'
+        db.exec("DELETE FROM phone_book_data WHERE phone_number = '#{deleted}'");
+    when 'col_home'
+     db.exec("DELETE FROM phone_book_data");
+     end
+     redirect '/'
+    end
+    

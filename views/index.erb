@@ -8,7 +8,7 @@ Please enter your information.
 <input type = "text" name = "user_email" placeholder = "Email">
 <input type = "submit">
 </form>
-<form action='/update' method='post'>
+<form action='/update' method='post'> Change your information:
 
    	<select name='table_column'>
 		<option value='col_first_name'>First Name</option>
@@ -23,6 +23,21 @@ Please enter your information.
 	   <input type="text" name="new_data" placeholder="new_data"><br>
 	   <input type="text" name="old_data" placeholder="old_data"><br>
 	   <input type="submit" value="Update">
+</form>
+<form action='/delete' method='post'> Delete your information:
+
+   	<select name='table_column'>
+		<option value='col_first_name'>First Name</option>
+		<option value='col_last_name'>Last Name</option>
+		<option value='col_address'>Street Address</option>
+		<option value='col_city_state_zip'>City</option>
+		<option value='col_phone_num'>Phone Number</option>
+		<option value='col_email'>Email Adress</option>
+	</select>
+   <input type="text" name="data_to_delete" placeholder="What would you like to delete?"><br>
+	<br>
+
+	   <input type="submit" value="Delete">
 </form>
 <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names..">
 <table id="myTable">
