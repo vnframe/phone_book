@@ -5,18 +5,23 @@ body {
 }
 
 #banner {
+    border: black 2px;
     font-size: 40px;
     font-family: 'Arial', Arial, Helvetica, sans-serif, serif;
     font-weight: bold;
-    background-color: firebrick;
+    background-color: #18023B;
     color: lightgray;
     height: 80px;
 }
 
 #info_boxes {
-    border: firebrick solid 2px;
+    border: black 2px;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
+}
+
+#table {
+    color: firebrick;
 }

@@ -37,7 +37,7 @@ Please enter your information.
 </form>
 <form action='/delete' method='post'> Delete your information by:
 
-   	<select name='table_column'>
+  <select name='table_column'>
 		<option value='col_first_name'>First Name</option>
 		<option value='col_last_name'>Last Name</option>
 		<option value='col_address'>Street Address</option>
@@ -60,6 +60,7 @@ Please enter your information.
     <th style="width:40%;">Street Address</th>
     <th style="width:40%;">City/State/Zip</th>
     <th style="width:40%;">Phone Number</th>
+    <th style="width:40%;">Email Address</th>
   </tr>
 <%info.each do |value|%>
 <tr>
@@ -68,6 +69,7 @@ Please enter your information.
 <td><%=value['street_address']%> </td> <br>
 <td><%=value['city_state_zip']%> </td> <br>
 <td><%=value['phone_number']%> </td> <br>
+<td> <%=value['email']%></td> <br>
 </tr>
 <%end%>
 </table>
