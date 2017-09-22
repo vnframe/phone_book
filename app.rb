@@ -1,5 +1,7 @@
 require "sinatra"
 require "pg"
+require_relative "functions.rb"
+enable "sessions"
 load './local_env.rb' if File.exists?('./local_env.rb')
 db_params = {
     host: ENV['host'],
@@ -8,8 +10,15 @@ db_params = {
     user: ENV['user'],
     password: ENV['password']
 }
-
-db = PG::Connection.new(db_params)
+$db = PG::Connection.new(db_params)
+# get "/" do
+#     erb :login
+# end
+# post "/log_in" do
+#     user = params[username]
+#     password = params[user_password]
+# redirect "/index"
+ 
 get "/" do 
     info = db.exec("Select * From phone_book_data")
     #info_array = info.values
@@ -22,9 +31,34 @@ post "/index" do
     street_address = params[:street]
     place = params[:city_state_zip]
     email = params[:user_email]
+    search_answer = params[:search_answer]
     db.exec("INSERT INTO phone_book_data(first_name, last_name, street_address, city_state_zip, phone_number, email) VALUES('#{fname}', '#{lname}', '#{street_address}', '#{place}', '#{phone_num}', '#{email}')");
     redirect '/'
 end
+# post "/search" do
+# end
+get "/search" do
+
+    erb :search
+end
+
+# Input is not comong from the form
+# Inputing data for a nonexistant user 
+
+post "/search" do
+    @params = params
+    print(@params)
+    #column = params[:table_column]
+    #search_answer = params[:search_answer]
+    #db = PG::Connection.new(db_params)
+    session[:search_table] = full_search_table_render(@params)
+    print(session[:search_table])
+    redirect :search
+ end
+	
+
+# redirect "/"
+# end
 post '/update' do
     
        new_data = params[:new_data]
@@ -66,4 +100,5 @@ post '/update' do
      end
      redirect '/'
     end
+
     
