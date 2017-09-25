@@ -21,7 +21,19 @@ post "/register" do
     db.exec("INSERT INTO login_info(username, password) VALUES('#{user}', '#{password}')");
 redirect "/"
 end
- 
+ post "/log_in" do 
+    user_name = params[:username]
+    user_pass = params[:user_password]
+
+    correct = db.exec("SELECT * FROM login_info WHERE username = '#{user_name}'")
+    login_data = correct.values.flatten
+    if login_data.include?(user_pass)
+    redirect "/index"
+    else 
+        redirect "/"
+    end
+    
+ end
 get "/index" do 
     info = db.exec("Select * From login_info")
     #info_array = info.values
