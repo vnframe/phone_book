@@ -45,10 +45,9 @@ def prep_html(response_obj)
 	    <td>First Name</td>
 	    <td>Last Name</td>
 	    <td>Street Address</td>
-	    <td>City</td>
-	    <td>State</td>
-	    <td>Zipcode</td>
-	    <td>Phone Number</td>
+	    <td>City/State/Zip</td>
+		<td>Phone Number</td>
+		<td>Email Address</td>
 	  </tr>"
 
 	# GENERATE ROW

@@ -10,17 +10,20 @@ db_params = {
     user: ENV['user'],
     password: ENV['password']
 }
-$db = PG::Connection.new(db_params)
-# get "/" do
-#     erb :login
-# end
-# post "/log_in" do
-#     user = params[username]
-#     password = params[user_password]
-# redirect "/index"
+db = PG::Connection.new(db_params)
+get "/" do
+    login = db.exec("Select * From login_info")
+    erb :login, locals: {login: login}
+end
+post "/register" do
+    user = params[:new_user]
+    password = params[:new_password]
+    db.exec("INSERT INTO login_info(username, password) VALUES('#{user}', '#{password}')");
+redirect "/"
+end
  
-get "/" do 
-    info = db.exec("Select * From phone_book_data")
+get "/index" do 
+    info = db.exec("Select * From login_info")
     #info_array = info.values
     erb :index, locals: {info: info}
 end
