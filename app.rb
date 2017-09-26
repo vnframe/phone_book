@@ -49,11 +49,10 @@ end
     end
 
 end
-
+end
     
- end
 get "/index" do 
-    info = db.exec("Select * From login_info")
+    info = db.exec("Select * From phone_book_data")
     #info_array = info.values
     erb :index, locals: {info: info}
 end
@@ -66,7 +65,7 @@ post "/index" do
     email = params[:user_email]
     search_answer = params[:search_answer]
     db.exec("INSERT INTO phone_book_data(first_name, last_name, street_address, city_state_zip, phone_number, email) VALUES('#{fname}', '#{lname}', '#{street_address}', '#{place}', '#{phone_num}', '#{email}')");
-    redirect '/'
+    redirect '/index'
 end
 # post "/search" do
 # end
@@ -112,7 +111,7 @@ post '/update' do
        when 'col_home'
         db.exec("UPDATE phone_book_data SET email = '#{new_data}' WHERE email = '#{old_data}' ");
         end
-       redirect '/'
+       redirect '/index'
     end
     post "/delete" do
         deleted = params[:data_to_delete]
@@ -131,7 +130,7 @@ post '/update' do
     when 'col_email'
      db.exec("DELETE FROM phone_book_data WHERE email = '#{deleted}'");
      end
-     redirect '/'
+     redirect '/index'
     end
 
     
