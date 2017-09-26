@@ -24,16 +24,32 @@ post "/register" do
 redirect "/"
 end
  post "/log_in" do 
-    user_name = params[:username]
-    user_pass = params[:user_password]
+    user_name = params[:username]#test1
+    user_pass = params[:user_password] #test1
 
     correct = db.exec("SELECT * FROM login_info WHERE username = '#{user_name}'")
-    login_data = correct.values.flatten
-    if login_data.include?(user_pass)
+    login_data = correct.values.flatten 
+    p login_data
+    if login_data[0] == user_name && login_data[1] == user_pass
     redirect "/index"
     else 
         redirect "/"
     end
+    match = db.exec("SELECT username, password WHERE username = '#{user_name}'")
+        if match.num_tuples.zero? == true
+        error = erb :login, :locals => {:message => "invalid username and password combination"}
+        return error
+    pass = match[0]['password']
+    compare_pass = BCrypt::Password.new(pass)
+    if match[0]['username'] == user_name && compare_pass == user_pass
+        session[:user] = user_name
+        erb :index, :locals => {:get_text => " "}
+    else
+        redirect "/"
+    end
+
+end
+
     
  end
 get "/index" do 
